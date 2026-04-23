@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🏀 Il Mondo del Basket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #F4622A;
+      --dark: #0D0D0D;
+      --cream: #F5F0E8;
+      --grey: #1A1A1A;
+      --accent: #F4A52A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--dark);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 6rem 8vw;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 80% 50%, rgba(244,98,42,.22) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 20% 80%, rgba(244,165,42,.12) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .ball-bg {
+      position: absolute;
+      right: -5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(55vw, 600px);
+      height: min(55vw, 600px);
+      border-radius: 50%;
+      border: 1px solid rgba(244,98,42,.15);
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 18%,
+          rgba(244,98,42,.07) 18%,
+          rgba(244,98,42,.07) 18.5%
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 18%,
+          rgba(244,98,42,.07) 18%,
+          rgba(244,98,42,.07) 18.5%
+        ),
+        radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0d0d0d 100%);
+      z-index: 0;
+      animation: spin 30s linear infinite;
+    }
+    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+    header > * { position: relative; z-index: 1; }
+
+    .eyebrow {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: .3em;
+      color: var(--orange);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      animation: fadeUp .8s ease both;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: .95;
+      color: var(--cream);
+      animation: fadeUp .8s .1s ease both;
+    }
+
+    h1 span { color: var(--orange); }
+
+    .hero-sub {
+      max-width: 480px;
+      margin-top: 1.5rem;
+      color: rgba(245,240,232,.65);
+      animation: fadeUp .8s .2s ease both;
+    }
+
+    .hero-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: .8rem 2rem;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: .05em;
+      border-radius: 3px;
+      transition: background .2s, transform .2s;
+      animation: fadeUp .8s .3s ease both;
+    }
+    .hero-link:hover { background: var(--accent); transform: translateY(-2px); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SEZIONI GENERALI ── */
+    section {
+      padding: 6rem 8vw;
+    }
+
+    .section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .3em;
+      color: var(--orange);
+      margin-bottom: .5rem;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+
+    h2 .underline {
+      display: inline;
+      border-bottom: 4px solid var(--orange);
+      padding-bottom: 2px;
+    }
+
+    p { color: rgba(245,240,232,.8); max-width: 680px; margin-bottom: 1rem; }
+    strong { color: var(--cream); }
+    em { color: var(--accent); font-style: italic; }
+
+    /* ── TECNICHE ── */
+    #tecniche { background: var(--grey); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .card {
+      background: var(--dark);
+      border: 1px solid rgba(244,98,42,.18);
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: var(--orange); transform: translateY(-4px); }
+
+    .card-icon { font-size: 2rem; margin-bottom: .8rem; }
+    .card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: .5rem;
+      letter-spacing: .05em;
+    }
+    .card p { font-size: .93rem; }
+
+    /* ── ALLENAMENTI ── */
+    #allenamenti { background: var(--dark); }
+
+    .top-list {
+      margin-top: 2rem;
+      counter-reset: item;
+      list-style: none;
+    }
+    .top-list li {
+      counter-increment: item;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .top-list li::before {
+      content: counter(item, decimal-leading-zero);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--orange);
+      min-width: 2.5rem;
+      line-height: 1;
+    }
+    .top-list strong { display: block; font-size: 1.05rem; margin-bottom: .2rem; }
+    .top-list span { color: rgba(245,240,232,.6); font-size: .9rem; }
+
+    /* ── IMMAGINE ── */
+    #gallery {
+      background: var(--grey);
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .img-frame {
+      position: relative;
+      margin-top: 2.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 820px;
+    }
+    .img-frame img {
+      width: 100%;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+      transition: filter .4s;
+    }
+    .img-frame:hover img { filter: grayscale(0%) contrast(1); }
+    .img-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.8));
+      padding: 2rem 1.5rem .8rem;
+      font-size: .85rem;
+      color: rgba(245,240,232,.7);
+    }
+
+    /* ── GIOCATORI ── */
+    #giocatori { background: var(--dark); }
+
+    .players {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .player {
+      background: var(--grey);
+      border-radius: 8px;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      border-top: 3px solid var(--orange);
+      transition: transform .2s;
+    }
+    .player:hover { transform: translateY(-5px); }
+    .player-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: rgba(244,98,42,.25);
+      line-height: 1;
+    }
+    .player h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--cream);
+      margin: .4rem 0 .3rem;
+      letter-spacing: .04em;
+    }
+    .player .team { font-size: .8rem; color: var(--orange); letter-spacing: .1em; margin-bottom: .6rem; }
+    .player p { font-size: .88rem; }
+
+    /* ── VIDEO ── */
+    #video { background: var(--grey); }
+
+    .video-wrap {
+      margin-top: 2.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 820px;
+      aspect-ratio: 16/9;
+    }
+    .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ── CITAZIONE ── */
+    blockquote {
+      border-left: 4px solid var(--orange);
+      padding: 1rem 1.5rem;
+      margin: 2.5rem 0;
+      max-width: 640px;
+      background: rgba(244,98,42,.06);
+      border-radius: 0 6px 6px 0;
+    }
+    blockquote p { font-size: 1.1rem; margin-bottom: .4rem; }
+    blockquote cite { font-size: .85rem; color: var(--orange); font-style: normal; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      padding: 2.5rem 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+    footer .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--orange); }
+    footer p { font-size: .8rem; color: rgba(245,240,232,.35); margin: 0; }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--orange);
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header>
+  <div class="ball-bg"></div>
+  <p class="eyebrow">🏀 Sport &amp; Passione</p>
+  <h1>IL MONDO<br>DEL <span>BASKET</span></h1>
+  <p class="hero-sub">
+    Tecniche, allenamenti e i campioni che hanno scritto la storia del gioco più elettrizzante del pianeta.
+  </p>
+  <a class="hero-link" href="https://www.nba.com" target="_blank" rel="noopener">
+    Visita NBA.com ↗
+  </a>
+</header>
+
+<!-- ═══════════════ TECNICHE ═══════════════ -->
+<section id="tecniche">
+  <p class="section-label">01 — Fondamentali</p>
+  <h2><span class="underline">Le Tecniche</span><br>del Basket</h2>
+  <div class="divider"></div>
+  <p>
+    Il basket è uno sport di <strong>precisione, velocità e intelligenza tattica</strong>. Padroneggiare i fondamentali è il primo passo per diventare un vero giocatore. Ogni movimento ha una ragione, ogni gesto è il risultato di migliaia di ore di pratica.
+  </p>
+  <p>
+    <em>«Il talento vince le partite, ma il lavoro di squadra e l'intelligenza vincono i campionati.»</em>
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h3>Tiro</h3>
+      <p>Il <strong>tiro</strong> è l'abilità fondamentale. Dalla meccanica del polso alla posizione dei piedi, ogni dettaglio conta per mandare la palla nel canestro con precisione.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Palleggio</h3>
+      <p>Il <strong>palleggio</strong> permette di muoversi sul campo mantenendo il controllo della palla. Cross-over, behind-the-back e spin move sono le varianti più spettacolari.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h3>Passaggio</h3>
+      <p>Un buon <strong>passaggio</strong> crea vantaggi per tutta la squadra. Il chest pass, il bounce pass e il no-look pass sono strumenti indispensabili in campo.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Difesa</h3>
+      <p>La <strong>difesa</strong> si vince con i piedi: slide laterali veloci, postura bassa e lettura del gioco avversario sono le chiavi per bloccare ogni attacco.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ALLENAMENTI ═══════════════ -->
+<section id="allenamenti">
+  <p class="section-label">02 — Training</p>
+  <h2><span class="underline">Allenamenti</span></h2>
+  <div class="divider"></div>
+  <p>
+    Un programma di allenamento completo comprende <strong>forza fisica, resistenza, agilità e abilità tecniche</strong>. I campioni NBA si allenano anche 6–8 ore al giorno per raggiungere il massimo livello.
+  </p>
+
+  <blockquote>
+    <p>«Il successo non è un incidente. È duro lavoro, perseveranza, apprendimento, studio, sacrificio.»</p>
+    <cite>— Pelé (ispirazione per ogni sportivo)</cite>
+  </blockquote>
+
+  <p>Ecco i <strong>5 motivi per cui il basket è lo sport perfetto</strong> per allenarsi:</p>
+
+  <ol class="top-list">
+    <li>
+      <div>
+        <strong>Cardio naturale</strong>
+        <span>Correre avanti e indietro per 40 minuti equivale a un allenamento aerobico completo.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Coordinazione e riflessi</strong>
+        <span>Palleggio, passaggi e tiri migliorano la coordinazione occhio-mano in modo eccezionale.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Forza funzionale</strong>
+        <span>Salti, contatti e cambi di direzione sviluppano muscoli in modo equilibrato e naturale.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Gioco di squadra</strong>
+        <span>Il basket insegna comunicazione, fiducia e sacrificio: abilità preziose anche nella vita.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Divertimento garantito</strong>
+        <span>L'adrenalina di un canestro all'ultimo secondo non ha paragoni in nessun altro sport.</span>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ═══════════════ IMMAGINE ═══════════════ -->
+<section id="gallery">
+  <p class="section-label">03 — Gallery</p>
+  <h2>Il Campo<br><span class="underline">da Gioco</span></h2>
+  <div class="divider"></div>
+  <p>Il parquet illuminato, il suono delle scarpe, il rimbalzo del pallone: <strong>il campo da basket è il luogo dove nascono le leggende</strong>.</p>
+
+  <div class="img-frame">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Basketball_through_hoop.jpg/1280px-Basketball_through_hoop.jpg"
+      alt="Palla da basket che passa attraverso il canestro"
+    />
+    <p class="img-caption">📸 Il momento più emozionante: la palla che scivola nel canestro.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ GIOCATORI FAMOSI ═══════════════ -->
+<section id="giocatori">
+  <p class="section-label">04 — Leggende</p>
+  <h2>Giocatori<br><span class="underline">Famosi</span></h2>
+  <div class="divider"></div>
+  <p>
+    Alcuni atleti hanno <strong>ridefinito i limiti del possibile</strong>, trasformando il basket in un'arte e diventando icone globali ben oltre il campo da gioco.
+  </p>
+
+  <div class="players">
+    <div class="player">
+      <div class="player-num">23</div>
+      <h3>Michael Jordan</h3>
+      <div class="team">CHICAGO BULLS</div>
+      <p>6 titoli NBA, 6 MVP delle Finals. <em>«Be like Mike»</em> non era solo uno slogan.</p>
+    </div>
+    <div class="player">
+      <div class="player-num">24</div>
+      <h3>Kobe Bryant</h3>
+      <div class="team">LOS ANGELES LAKERS</div>
+      <p>La <strong>Mamba Mentality</strong>: ossessione per la perfezione e 5 anelli NBA.</p>
+    </div>
+    <div class="player">
+      <div class="player-num">6</div>
+      <h3>LeBron James</h3>
+      <div class="team">LOS ANGELES LAKERS</div>
+      <p>Il <strong>Re</strong> del basket moderno: 4 titoli con 4 franchise diverse.</p>
+    </div>
+    <div class="player">
+      <div class="player-num">30</div>
+      <h3>Stephen Curry</h3>
+      <div class="team">GOLDEN STATE WARRIORS</div>
+      <p>Ha rivoluzionato il gioco con i suoi <strong>triple da distanze impossibili</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ VIDEO ═══════════════ -->
+<section id="video">
+  <p class="section-label">05 — Video</p>
+  <h2>Guarda &amp;<br><span class="underline">Impara</span></h2>
+  <div class="divider"></div>
+  <p>
+    Niente vale più di <strong>vedere i campioni all'opera</strong>. Studia i loro movimenti, analizza le loro scelte tattiche e lasciati ispirare.
+  </p>
+
+  <div class="video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/xjUbWBCRsHk"
+      title="Highlights NBA Basket"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p style="margin-top:1.2rem; font-size:.88rem; color:rgba(245,240,232,.45);">
+    ↳ Per approfondire visita <a href="https://www.nba.com" target="_blank" rel="noopener" style="color:var(--orange);">nba.com</a> — il sito ufficiale della lega più famosa al mondo.
+  </p>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="logo">🏀 Basket</div>
+  <p>Pagina realizzata con ❤️ per la sfida di laboratorio Web Design &nbsp;|&nbsp; <a href="https://www.nba.com" target="_blank">nba.com</a></p>
+</footer>
+
+</body>
+</html>
